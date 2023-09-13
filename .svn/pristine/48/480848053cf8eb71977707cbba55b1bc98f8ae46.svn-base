@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14"
+                id="PayrollHomeBTF_PayrollHomeBTF_CreateWithParametersPageDef" Package="taskflow" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="TIME_CARD_MASTER_VO" RangeSize="25" DataControl="Naresco_AMDataControl"
+              id="TIME_CARD_MASTER_VOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="TIME_CARD_MASTER_VOIterator" id="CreateWithParams" RequiresUpdateModel="true"
+            Action="createWithParams">
+      <NamedData NDName="CreatedBy" NDValue="#{sessionScope.userName}" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

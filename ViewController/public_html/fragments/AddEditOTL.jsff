@@ -1,0 +1,515 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1" >
+    <f:facet name="pageContents">
+      <af:panelBox text="PanelBox1" id="pb2"
+                   inlineStyle="border-color:transparent; height:1700.0px;"
+                   showHeader="never"
+                  >
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout layout="vertical"
+                             xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                             id="pgl6"
+                            >
+          <af:panelGroupLayout id="pgl2" layout="horizontal"
+                              >
+            <af:panelGroupLayout id="pgl3" layout="vertical"
+                                 >
+              <af:spacer width="10" height="10" id="s3"
+                        />
+              <af:panelGroupLayout id="pgl16" layout="horizontal"
+                                  >
+                <af:spacer width="10" height="10" id="s4"
+                          />
+                <af:outputText id="ot1"
+                               inlineStyle="font-size:large; font-weight:bold;"
+                               value="Add Edit OTL"
+                               />
+                <af:spacer width="10" height="10" id="s43"
+                          />
+                <af:outputText value="#{bindings.TimeCardNumber.inputValue}"
+                               id="ot2"
+                               inlineStyle="font-size:large; font-weight:bold;color:#1367ae;"
+                              />
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+            <af:spacer width="700" height="10" id="s2"
+                     />
+            <af:panelGroupLayout id="panelGroupLayout1" layout="vertical"
+                                 >
+              <af:spacer width="10" height="10" id="spacer1"
+                       />
+              <af:panelGroupLayout id="panelGroupLayout2" layout="horizontal"
+                                  >
+                <af:toolbar id="t1">
+                  <af:button text="Save" id="b1"  actionListener="#{backingBeanScope.OTL_Page.onClickSave}"/>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:button text="Cancel" id="b2" action="back"  immediate="true"
+                             actionListener="#{backingBeanScope.OTL_Page.onClickCancel}"/>
+                            
+      <af:spacer width="10" height="10" id="s13"/>
+                  <af:button text="Submit" id="b10"  partialTriggers="ot3 ot25 m1"  rendered="#{bindings.Status.inputValue eq 'REJ' and sessionScope.RoleName eq 'OTL Timekeeper' || bindings.Status.inputValue eq 'Draft'}" actionListener="#{backingBeanScope.OTL_Page.onClickSubmit}"
+                             action="back"/>
+                   <af:spacer width="10" height="10" id="s35"/>
+                  <af:menuBar id="mb2">
+                  <af:menu text="Action" id="m1" partialTriggers="b10"  rendered="#{backingBeanScope.OTL_Page.approvalUser}"
+                                        >
+                                 <af:commandMenuItem text="Approve" id="cmi2"   partialTriggers="ot3">
+                                    <af:showPopupBehavior popupId="p2"
+                                                          triggerType="action"/>
+                                 </af:commandMenuItem>
+                                 <af:commandMenuItem text="Reject" id="cmi1" partialTriggers="ot3">
+                                    <af:showPopupBehavior popupId="p3"
+                                                          triggerType="action"/>
+                                 </af:commandMenuItem>
+                              </af:menu>
+                              <af:spacer width="10" height="10" id="s18"/>
+</af:menuBar>
+                             
+                </af:toolbar>
+                
+      <af:popup autoCancel="disabled" id="p2"  binding="#{backingBeanScope.OTL_Page.p2}" contentDelivery="lazyUncached">
+          <af:dialog id="d2" type="none" title="Are you sure  want to Approve this record ?">
+            <f:facet name="buttonBar">
+              <af:toolbar id="t4" flex="1">
+                <af:spacer width="10" height="10" id="s16"/>
+                <af:button text="Ok" id="b11"  partialTriggers="ot25" actionListener="#{backingBeanScope.OTL_Page.onClickApprove}" action="back"/>
+                <af:spacer width="10" height="10" id="s17"/>
+                <af:button text="Cancel" id="b12" actionListener="#{backingBeanScope.OTL_Page.onClickApprCancel}"/>
+              </af:toolbar>
+            </f:facet>
+                    </af:dialog>
+                 
+                </af:popup>
+        <af:popup childCreation="deferred" autoCancel="disabled" id="p3" binding="#{backingBeanScope.OTL_Page.p3}" contentDelivery="lazyUncached">
+          <af:dialog id="d3"  type="none" title="Are you sure  want to Reject this record ?">
+            <f:facet name="buttonBar">
+              <af:toolbar id="t5" flex="1">
+                <af:spacer width="10" height="10" id="s19"/>
+                <af:button text="Ok" id="b13" partialTriggers="ot25" actionListener="#{backingBeanScope.OTL_Page.onClickRejectSave}"/>
+                <af:spacer width="10" height="10" id="s20"/>
+                <af:button text="Cancel" id="b14" actionListener="#{backingBeanScope.OTL_Page.onClickRejectCancel}"/>
+              </af:toolbar>
+            </f:facet>
+            
+          </af:dialog>
+        </af:popup>
+
+
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+          <af:spacer width="10" height="10" id="spacer4"
+                    />
+          <af:separator id="s12" inlineStyle="border-color:#C1C1C1"
+                       />
+          <af:spacer width="10" height="10" id="s5"
+                     />
+                     </af:panelGroupLayout>
+                     
+                    <af:panelBox text="OTL Header" id="pb1" showDisclosure="false"
+                       inlineStyle="border-color:transparent; "
+                       showHeader="never"
+                     >
+            <af:panelFormLayout id="pfl2" rows="3" maxColumns="2"
+                                fieldWidth="300" labelWidth="280"  binding="#{backingBeanScope.OTL_Page.hdrForm}">
+                                
+          
+            <af:inputComboboxListOfValues id="businessUnitName1Id"
+                                          popupTitle="Search and Select: #{bindings.BusinessUnitName1.hints.label}"
+                                          value="#{bindings.BusinessUnitName1.inputValue}"
+                                          label="Business Unit Name" disabled="#{bindings.Status.inputValue ne 'DRAFT'}"
+                                          model="#{bindings.BusinessUnitName1.listOfValuesModel}"
+                                          required="true"
+                                          columns="32"  autoSubmit="true"
+                                          shortDesc="#{bindings.BusinessUnitName1.hints.tooltip}">
+              <f:validator binding="#{bindings.BusinessUnitName1.validator}"/>
+                <af:autoSuggestBehavior suggestItems="#{bindings.BusinessUnitName1.suggestItems}"/>
+            </af:inputComboboxListOfValues>
+             <af:inputComboboxListOfValues id="projectNumber1Id"
+                                          popupTitle="Search and Select: #{bindings.ProjectNumber1.hints.label}"
+                                          value="#{bindings.ProjectNumber1.inputValue}" autoSubmit="true"
+                                          label="Project Number" disabled="#{bindings.Status.inputValue ne 'DRAFT'}"
+                                          model="#{bindings.ProjectNumber1.listOfValuesModel}"
+                                          required="true" 
+                                          columns="#{bindings.ProjectNumber1.hints.displayWidth}"
+                                          shortDesc="#{bindings.ProjectNumber1.hints.tooltip}">
+              <f:validator binding="#{bindings.ProjectNumber1.validator}"/>
+               <af:autoSuggestBehavior suggestItems="#{bindings.ProjectNumber1.suggestItems}"/>
+            </af:inputComboboxListOfValues>
+            <af:inputDate value="#{bindings.TimeCardDate.inputValue}" label="Time Entry Date"
+                          required="true"  autoSubmit="true"  
+                          columns="32" disabled="#{bindings.Status.inputValue ne 'DRAFT'}"
+                          shortDesc="#{bindings.TimeCardDate.hints.tooltip}" id="id1">
+              <f:validator binding="#{bindings.TimeCardDate.validator}"/>
+              <af:convertDateTime pattern="dd-MM-yyyy"/>
+            </af:inputDate> 
+            <af:inputText value="#{bindings.ProjectNumber.inputValue}" label="Project Number" rendered="false"
+                          required="#{bindings.ProjectNumber.hints.mandatory}" autoSubmit="true" 
+                          columns="30"
+                          valueChangeListener="#{backingBeanScope.OTL_Page.onChangeProjectNumber}"
+                          maximumLength="#{bindings.ProjectNumber.hints.precision}"
+                          shortDesc="#{bindings.ProjectNumber.hints.tooltip}" id="it1">
+              <f:validator binding="#{bindings.ProjectNumber.validator}"/>
+            </af:inputText>
+           
+            <af:inputComboboxListOfValues id="jobTypeName1Id" disabled="#{bindings.Status.inputValue ne 'DRAFT'}"
+                                          popupTitle="Search and Select: #{bindings.JobTypeName1.hints.label}"
+                                          value="#{bindings.JobTypeName1.inputValue}"
+                                          label="Category" autoSubmit="true"
+                                          model="#{bindings.JobTypeName1.listOfValuesModel}"
+                                           required="true" 
+                                          columns="30"
+                                          shortDesc="#{bindings.JobTypeName1.hints.tooltip}">
+                                          
+              <f:validator binding="#{bindings.JobTypeName1.validator}"/>
+                <af:autoSuggestBehavior suggestItems="#{bindings.JobTypeName1.suggestItems}"/>
+            </af:inputComboboxListOfValues>
+              <af:inputText value="#{bindings.TimeCardNumber.inputValue}" label="Time Card Number"  partialTriggers="b1"
+                          required="#{bindings.TimeCardNumber.hints.mandatory}" autoSubmit="true" disabled="true"
+                          columns="30" 
+                          maximumLength="#{bindings.TimeCardNumber.hints.precision}"
+                          shortDesc="#{bindings.TimeCardNumber.hints.tooltip}" id="it3">
+              <f:validator binding="#{bindings.TimeCardNumber.validator}"/>
+              
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.TimeCardNumber.format}"/>
+            </af:inputText>
+             <af:inputText value="#{bindings.ProjectName.inputValue}" label="Project Name" 
+                          required="true" autoSubmit="true" 
+                          columns="50" disabled="true" partialTriggers="projectNumber1Id id1"
+                          maximumLength="#{bindings.ProjectName.hints.precision}"
+                          shortDesc="#{bindings.ProjectName.hints.tooltip}" id="it2">
+              <f:validator binding="#{bindings.ProjectName.validator}"/>
+            </af:inputText>
+             <af:panelLabelAndMessage label="#{bindings.Status.hints.label}" id="plam1" >
+              <af:outputText value="#{bindings.Status.inputValue eq 'PEN' ? 'PENDING' : bindings.Status.inputValue eq 'APR' ? 'APPROVED' : bindings.Status.inputValue eq 'REJ' ? 'REJECTED' : bindings.Status.inputValue}" shortDesc="#{bindings.Status.hints.tooltip}"
+                             id="ot25"  partialTriggers="b10 b11 b13 cmi2 cmi1"  />
+          
+              <af:outputText  rendered="false" value="#{bindings.ApprovalStatus.inputValue eq 'PEN' ? 'Pending' : bindings.ApprovalStatus.inputValue eq 'APR' ? 'Approved' : bindings.ApprovalStatus.inputValue eq 'REJ' ? 'Rejected' : bindings.ApprovalStatus.inputValue}"
+              partialTriggers="b10 b11 b13 cmi2 cmi1"  visible="#{bindings.ApprovalStatus.inputValue eq 'PEN' || bindings.ApprovalStatus.inputValue eq 'APR' || bindings.ApprovalStatus.inputValue eq 'REJ'}"
+                     shortDesc="#{bindings.ApprovalStatus.hints.tooltip}" id="ot3"/>
+            </af:panelLabelAndMessage>
+           
+            <af:panelLabelAndMessage label="Next Approver" rendered="false" id="plam2" visible="#{bindings.ApprovalStatus.inputValue eq 'PEN'}"  partialTriggers="b10 b11 b13 cmi2 cmi1" >
+              <af:outputText rendered="false" value="#{bindings.NextApprover.inputValue}" visible="#{bindings.ApprovalStatus.inputValue ne 'PEN'}"  partialTriggers="b10 b11 b13 cmi2 cmi1" 
+                             shortDesc="#{bindings.NextApprover.hints.tooltip}" id="ot24"/>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+                     </af:panelBox>
+        <af:spacer width="10" height="50" id="s6"/>
+        <af:panelBox text="OTL Time Entry Details" id="pb3">
+       
+        
+     
+        
+          <af:panelFormLayout fieldWidth="250" id="pfl3" labelAlignment="start" labelWidth="250" maxColumns="2"
+                                rows="4" partialTriggers="b1"  rendered="#{bindings.Status.inputValue ne 'DRAFT'}">
+             
+            <af:inputComboboxListOfValues id="employeeLovId"
+                                          popupTitle="Search and Select: #{bindings.EmployeeLov.hints.label}"
+                                          value="#{bindings.EmployeeLov.inputValue}" autoSubmit="true"
+                                          valueChangeListener="#{backingBeanScope.OTL_Page.onChangeEmployeeLov}"
+                                          label="Employee Number" partialTriggers="b4 b5 b3"
+                                          model="#{bindings.EmployeeLov.listOfValuesModel}"
+                                          required="#{bindings.EmployeeLov.hints.mandatory}"
+                                          columns="#{bindings.EmployeeLov.hints.displayWidth}"
+                                          shortDesc="#{bindings.EmployeeLov.hints.tooltip}">
+              <f:validator binding="#{bindings.EmployeeLov.validator}"/>
+              <af:autoSuggestBehavior suggestItems="#{bindings.EmployeeLov.suggestItems}"/> 
+            </af:inputComboboxListOfValues>
+            <af:inputComboboxListOfValues id="taskNumber2Id"   partialTriggers="it10" disabled="true"
+                                          popupTitle="Search and Select: #{bindings.TaskNumber2.hints.label}"
+                                          value="#{bindings.TaskNumber2.inputValue}"
+                                          label="Task Number" autoSubmit="true" visible="#{bindings.JobTypeCode.inputValue ne 'SUB-CONT'}"
+                                          model="#{bindings.TaskNumber2.listOfValuesModel}"
+                                          required="#{bindings.TaskNumber2.hints.mandatory}"
+                                          columns="#{bindings.TaskNumber2.hints.displayWidth}"
+                                          shortDesc="#{bindings.TaskNumber2.hints.tooltip}">
+              <f:validator binding="#{bindings.TaskNumber2.validator}"/>
+              <af:autoSuggestBehavior suggestItems="#{bindings.TaskNumber2.suggestItems}"/>
+            </af:inputComboboxListOfValues>
+            <af:inputText value="#{bindings.TaskNumber.inputValue}" label="Task Number"
+                            required="#{bindings.TaskNumber.hints.mandatory}"  autoSubmit="true"
+                            columns="30" rendered="false" visible="#{bindings.JobTypeCode.inputValue ne 'SUB-CONT'}"
+                            valueChangeListener="#{backingBeanScope.OTL_Page.onChangeAddTask}"
+                            maximumLength="#{bindings.TaskNumber.hints.precision}"
+                            shortDesc="#{bindings.TaskNumber.hints.tooltip}" id="it9">
+                <f:validator binding="#{bindings.TaskNumber.validator}"/>
+                
+              </af:inputText>
+             
+              <af:inputText value="#{bindings.RegularHours.inputValue}" label="Regular Hours"
+                            required="#{bindings.RegularHours.hints.mandatory}" autoSubmit="true"
+                            columns="30" valueChangeListener="#{backingBeanScope.OTL_Page.onChangeRegularHours}"
+                            maximumLength="#{bindings.RegularHours.hints.precision}"
+                            shortDesc="#{bindings.RegularHours.hints.tooltip}" id="it6"
+                            partialTriggers="employeeLovId it7 jobTypeName1Id"
+                            disabled="#{bindings.JobTypeName1.inputValue eq 'Sub-Contractor'}">
+                <f:validator binding="#{bindings.RegularHours.validator}"/>
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:inputText>               
+              <af:inputText value="#{bindings.Ot1.inputValue}" label="Over Time" autoSubmit="true"
+                            required="#{bindings.Ot1.hints.mandatory}" columns="30"
+                            partialTriggers="employeeLovId it6 jobTypeName1Id"
+                            valueChangeListener="#{backingBeanScope.OTL_Page.onChangeOT1}"
+                            maximumLength="#{bindings.Ot1.hints.precision}" shortDesc="#{bindings.Ot1.hints.tooltip}"
+                            id="it7" binding="#{backingBeanScope.OTL_Page.ovrtime}"
+                            disabled="#{bindings.JobTypeName1.inputValue eq 'Sub-Contractor'}">
+                <f:validator binding="#{bindings.Ot1.validator}"/>
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.Ot2.inputValue}" label="Incentive Time" autoSubmit="true"
+                            required="#{bindings.Ot2.hints.mandatory}" columns="30" rendered="false"
+                            maximumLength="#{bindings.Ot2.hints.precision}" shortDesc="#{bindings.Ot2.hints.tooltip}"
+                            id="it8" >
+                <f:validator binding="#{bindings.Ot2.validator}"/>
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:inputText>
+               <af:inputText value="#{bindings.EmployeeName.inputValue}" label="Employee Name"
+                            required="#{bindings.EmployeeName.hints.mandatory}" autoSubmit="true" disabled="true"
+                            columns="35" partialTriggers="employeeLovId b4 b5 b3"
+                            maximumLength="#{bindings.EmployeeName.hints.precision}"
+                            shortDesc="#{bindings.EmployeeName.hints.tooltip}" id="it4">
+                <f:validator binding="#{bindings.EmployeeName.validator}"/>
+              </af:inputText>
+               <af:inputText value="#{bindings.TaskName.inputValue}" label="Task Name" visible="#{bindings.JobTypeCode.inputValue ne 'SUB-CONT'}"
+                            required="#{bindings.TaskName.hints.mandatory}" autoSubmit="true"
+                            columns="35" disabled="true"
+                            maximumLength="#{bindings.TaskName.hints.precision}"
+                            shortDesc="#{bindings.TaskName.hints.tooltip}" id="it10">
+                <f:validator binding="#{bindings.TaskName.validator}"/>
+              </af:inputText>
+            <af:inputComboboxListOfValues id="jobTypeId" popupTitle="Search and Select: #{bindings.JobType.hints.label}"
+                                          value="#{bindings.JobType.inputValue}" label="Job Type"
+                                          model="#{bindings.JobType.listOfValuesModel}" autoSubmit="true"
+                                          required="#{bindings.JobType.hints.mandatory}" visible="#{bindings.JobTypeCode.inputValue ne 'SUB-CONT'}"
+                                          columns="30" partialTriggers="employeeLovId b4 b5 b3"
+                                          shortDesc="#{bindings.JobType.hints.tooltip}">
+              <f:validator binding="#{bindings.JobType.validator}"/>
+              <af:autoSuggestBehavior suggestItems="#{bindings.JobType.suggestItems}"/>
+            </af:inputComboboxListOfValues>
+            <af:panelGroupLayout id="pgl1" layout="horizontal">
+               
+                
+                 <af:button text="Add" id="b4" actionListener="#{backingBeanScope.OTL_Page.onClickAdd}"  disabled="#{pageFlowScope.addEditMode eq 'editmode'||bindings.Status.inputValue eq 'PROCESSED'||bindings.Status.inputValue eq 'APR' }"
+                            partialTriggers="b5 pc1:b7">
+                <af:setPropertyListener from="addmode" to="#{pageFlowScope.addEditMode}" type="action"/>
+                 </af:button>
+                <af:spacer width="10" height="10" id="s8"/>
+                <af:button text="Update" id="b5" actionListener="#{backingBeanScope.OTL_Page.onClickUpdate}" disabled="#{pageFlowScope.addEditMode ne 'editmode' || bindings.Status.inputValue eq 'PROCESSED'||bindings.Status.inputValue eq 'APR'}"
+                           partialTriggers="pc1:b7 b5">
+                
+                </af:button>
+                <af:spacer width="10" height="10" id="s15"/>
+                <af:button text="Reset" id="b3"  partialTriggers="b5 pc1:b7" actionListener="#{backingBeanScope.OTL_Page.OnClickAddEditReset}" disabled="#{pageFlowScope.addEditMode eq 'editmode'}" />
+                <af:spacer width="10" height="10" id="s14"/>
+                
+           </af:panelGroupLayout>
+              </af:panelFormLayout>
+              
+                            
+                               
+                             
+                      </af:panelBox>
+        <af:spacer width="10" height="10" id="s9"/>
+        <af:panelCollection id="pc1" partialTriggers="::b1" styleClass="AFStretchWidth" rendered="#{bindings.Status.inputValue ne 'DRAFT'}">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar" >
+            <af:toolbar id="t3" flex="100">
+              <af:link text="Upload Timecard Details Excel" id="l1" icon="/images/xl.png" targetFrame="_blank"
+                       destination="https://ncltstjcs.naresco.ae/GenericExcelUpload/faces/pages/Home.jspx"
+                       action="back"/>
+              <af:button text="Okkkkk" id="b90" actionListener="#{backingBeanScope.OTL_Page.onclickOk}"  rendered="false" />
+              <af:commandImageLink id="b7" icon="/images/func_pencil_16_ena.png" 
+                                   actionListener="#{backingBeanScope.OTL_Page.onClickEdit}" disabled="#{bindings.Status.inputValue eq 'PROCESSED'||bindings.Status.inputValue eq 'APR'}"
+                                   hoverIcon="/images/func_pencil_16_hov.png" shortDesc="">
+                                 
+        
+                  <af:setPropertyListener from="editmode" to="#{pageFlowScope.addEditMode}" type="action"/>
+      </af:commandImageLink>
+              <af:spacer width="20" height="10" id="s11"/>
+              <af:commandImageLink id="cil3" icon="/images/delete.png" hoverIcon="/images/delete_ena.png"
+                                      shortDesc="" partialTriggers="::b5 b7" disabled="#{pageFlowScope.addEditMode eq 'editmode' || bindings.Status.inputValue eq 'PROCESSED'||bindings.Status.inputValue eq 'APR'}">
+                  <af:showPopupBehavior popupId="p1"/>
+                </af:commandImageLink>
+              <af:link actionListener="#{bindings.Execute.execute}" text="Refresh" id="l2"/>
+              <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                          binding="#{backingBeanScope.OTL_Page.popUp}">
+                  <af:dialog id="d1" type="none" title="Warning" closeIconVisible="false"
+                             titleIconSource="/images/warning.png" contentWidth="250" contentHeight="30">
+                    <af:panelGroupLayout id="pgl4" layout="vertical">
+                      <af:outputText value="Are you sure  want to Delete this record ?" id="ot6"/>
+                      <af:spacer width="10" height="10" id="s10"/>
+                      <af:panelGroupLayout id="pgl5" layout="horizontal" halign="right">
+                        <af:button text="Ok" id="b9" actionListener="#{backingBeanScope.OTL_Page.onClickDeleteOk}"/>
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:button text="Cancel" id="b8"
+                                   actionListener="#{backingBeanScope.OTL_Page.onClickDeleteCancel}"/>
+                      </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+                <af:button text="Test" id="b6"    rendered="false"
+                          />
+             
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.XXSC_TIME_CARD_DTL_VO.collectionModel}" var="row"
+                    rows="#{bindings.XXSC_TIME_CARD_DTL_VO.rangeSize}"
+                    emptyText="#{bindings.XXSC_TIME_CARD_DTL_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    rowBandingInterval="0"   filterVisible="true"    
+                   
+                    selectedRowKeys="#{bindings.XXSC_TIME_CARD_DTL_VO.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.XXSC_TIME_CARD_DTL_VO.collectionModel.makeCurrent}"
+                    rowSelection="single" fetchSize="#{bindings.XXSC_TIME_CARD_DTL_VO.rangeSize}" id="t2"
+                    filterModel="#{bindings.XXSC_TIME_CARD_DTL_VOQuery.queryDescriptor}"
+                    queryListener="#{bindings.XXSC_TIME_CARD_DTL_VOQuery.processQuery}" varStatus="vs"
+                    partialTriggers="::l2">
+           <af:column headerText="S.No" width="50">
+                                <af:outputText value="#{vs.index+1}" id="ot4"/>
+                            </af:column>
+            <af:column headerText="Employee Number" id="c2" filterable="true" width="100"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.EmployeeNumber.name}">
+              <af:outputText value="#{row.EmployeeNumber}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.EmployeeNumber.tooltip}" id="ot5"/>
+            </af:column>
+            <af:column headerText="Employee Name" id="c1" filterable="true" width="300"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.EmployeeName.name}">
+              <af:outputText value="#{row.EmployeeName}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.EmployeeName.tooltip}" id="ot22"/>
+            </af:column>
+             <af:column headerText="Task Number" id="c18" filterable="true" width="100"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskNumber.name}">
+              <af:outputText value="#{row.TaskNumber}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskNumber.tooltip}" id="ot21"/>
+            </af:column>
+            <af:column headerText="Task Name" id="c17" filterable="true" width="300"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskName.name}">
+              <af:outputText value="#{row.TaskName}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskName.tooltip}" id="ot20"/>
+            </af:column>
+           
+            <af:column headerText="Job Type " id="c6" filterable="true"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.JobTypeName.name}">
+              <af:outputText value="#{row.JobTypeName}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.JobTypeName.tooltip}" id="ot9"/>
+            </af:column>
+            <af:column headerText="Job Rate" id="c7" filterable="true"    rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.JobTypeRate.name}">
+              <af:outputText value="#{row.JobTypeRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.JobTypeRate.tooltip}" id="ot10">
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="Regular Hours" id="c12" filterable="true" align="right"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularHrs.name}">
+              <af:outputText value="#{row.RegularHrs}" 
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularHrs.tooltip}" id="ot15">
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="Over Time " id="c8" filterable="true" align="right"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeHrs.name}">
+              <af:outputText value="#{row.OverTimeHrs}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeHrs.tooltip}" id="ot11">
+              <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="Incentive Hrs" id="c3" filterable="true" align="right" rendered="false"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveHrs.name}">
+              <af:outputText value="#{row.IncentiveHrs}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveHrs.tooltip}" id="ot23">
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+              <af:column headerText="Regular Rate" id="c13" filterable="true"
+                     rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}" sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularRate.name}">
+              <af:outputText value="#{row.RegularRate}" 
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularRate.tooltip}" id="ot16">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>              </af:outputText>
+            </af:column>
+              <af:column headerText=" Over TimeRate" id="c9" rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeRate.name}" filterable="true">
+              <af:outputText value="#{row.OverTimeRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeRate.tooltip}" id="ot12">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="Incentive Rate" id="c4" rendered="false"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveRate.name}" filterable="true">
+              <af:outputText value="#{row.IncentiveRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveRate.tooltip}" id="ot7">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+          <af:column headerText="Regular Unit Rate" id="c14"
+                       rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}" sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularUnitRate.name}"
+                       filterable="true">
+              <af:outputText value="#{row.RegularUnitRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RegularUnitRate.tooltip}" id="ot17">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+              </af:column>
+            <af:column rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}" headerText="Over Time Unit Rate"
+                       id="c10" sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeUnitRate.name}"
+                       filterable="true">
+              <af:outputText value="#{row.OverTimeUnitRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.OverTimeUnitRate.tooltip}" id="ot13">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+          
+          
+            <af:column headerText="Incentive Unit Rate" id="c5"
+                       rendered="false" sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveUnitRate.name}"
+                       filterable="true">
+              <af:outputText value="#{row.IncentiveUnitRate}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.IncentiveUnitRate.tooltip}" id="ot8">
+               <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+          
+            <af:column headerText="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.PayrollFlag.label}" id="c11" rendered="false"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.PayrollFlag.name}" filterable="true">
+              <af:outputText value="#{row.PayrollFlag}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.PayrollFlag.tooltip}" id="ot14"/>
+            </af:column>
+           
+            <af:column headerText="Total Amount" id="c20" rendered="#{sessionScope.RoleName eq 'OTL_Payroll Coordinator'}">
+              <af:outputText value="#{row.TotalAmount}"
+                             shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TotalAmount.tooltip}" id="ot26">
+                <af:convertNumber minFractionDigits="2" maxFractionDigits="2" pattern="###,###,###,###"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.Status.label}" id="c15" sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.Status.name}" filterable="true">
+              <af:outputText value="#{row.Status}" shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.Status.tooltip}"
+                             id="ot18"/>
+            </af:column>
+            <af:column headerText="Reject Reason" id="c19"  sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RejectReason.name}"
+                       filterable="true" width="200" >
+              <af:inputText value="#{row.bindings.RejectReason.inputValue}" simple="true"
+                            required="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RejectReason.mandatory}" autoSubmit="true"
+                            columns="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RejectReason.displayWidth}" readOnly="#{bindings.Status.inputValue ne 'REJ'}"
+                            maximumLength="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RejectReason.precision}"
+                            shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.RejectReason.tooltip}" id="it5">
+                <f:validator binding="#{row.bindings.RejectReason.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column headerText="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskId.label}" id="c16" rendered="false"
+                       sortProperty="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskId.name}" filterable="true">
+              <af:outputText value="#{row.TaskId}" shortDesc="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskId.tooltip}"
+                             id="ot19">
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.XXSC_TIME_CARD_DTL_VO.hints.TaskId.format}"/>
+              </af:outputText>
+            </af:column>
+          </af:table>
+        </af:panelCollection>
+      </af:panelBox>
+                     </f:facet>
+                     </af:pageTemplate>
+                     </jsp:root>
+                     

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding='windows-1252'?>
+<!DOCTYPE OperationDefinitions SYSTEM "jbo_03_01.dtd">
+<OperationDefinitions xmlns="http://xmlns.oracle.com/bc4j" Name="AddEdit_ROVOOperations">
+  <ExpressionCodeSource
+    Name="AddEdit_ROVO"
+    Type="Static"
+    URI="model/rovo/AddEdit_ROVO.bcs"/>
+  <ExpressionCodeSource
+    Name="AddEdit_ROVORow"
+    Type="Static"
+    URI="model/rovo/AddEdit_ROVORow.bcs"/>
+</OperationDefinitions>

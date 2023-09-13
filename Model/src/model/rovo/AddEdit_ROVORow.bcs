@@ -1,0 +1,75 @@
+//Groovy Scripts for model.rovo.AddEdit_ROVO
+
+package model.rovo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="ProjectId")
+def ProjectId_ExpressionScript_Expression()
+{
+if( TIME_CARD_MASTER_VO.first()!=null)
+{
+return TIME_CARD_MASTER_VO.first().getAttribute("ProjectId");
+}
+else
+{
+return "00";
+}
+}
+
+
+@TransientValueExpression(attributeName="BusinessUnitId")
+def BusinessUnitId_ExpressionScript_Expression()
+{
+if( TIME_CARD_MASTER_VO.first()!=null)
+{
+return TIME_CARD_MASTER_VO.first().getAttribute("BusinessUnitId");
+}
+else
+{
+return "";
+}
+}
+
+
+@TransientValueExpression(attributeName="TaskNumber")
+def TaskNumber_ExpressionScript_Expression()
+{
+if( Task_ROVO.first()!=null)
+{
+return Task_ROVO.first().getAttribute("TaskNumber");
+}
+else
+{
+return "";
+}
+}
+
+
+@TransientValueExpression(attributeName="TaskName")
+def TaskName_ExpressionScript_Expression()
+{
+if( Task_ROVO.first()!=null)
+{
+return Task_ROVO.first().getAttribute("TaskName");
+}
+else
+{
+return "";
+}
+}
+
+
+@TransientValueExpression(attributeName="TaskId")
+def TaskId_ExpressionScript_Expression()
+{
+if( Task_ROVO.first()!=null)
+{
+return Task_ROVO.first().getAttribute("TaskId");
+}
+else
+{
+return "";
+}
+}
+

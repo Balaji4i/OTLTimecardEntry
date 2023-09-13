@@ -1,0 +1,54 @@
+//Groovy Scripts for model.rovo.AddEdit_ROVO
+
+package model.rovo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="JobType_ROVO", name="b_employee")
+def b_employee_JobType_ROVO_BindVariable_BoundParameter()
+{
+EmployeeLov
+}
+
+
+@AccessorParameterExpression(accessorName="TIME_CARD_MASTER_VO", name="p_Id")
+def p_Id_TIME_CARD_MASTER_VO_BindVariable_BoundParameter()
+{
+adf.context.pageFlowScope.headerId
+}
+
+
+@AccessorParameterExpression(accessorName="Task_ROVO", name="p_ProjId")
+def p_ProjId_Task_ROVO_BindVariable_BoundParameter()
+{
+ProjectId
+}
+
+
+@AccessorParameterExpression(accessorName="JobType_ROVO", name="b_business_Unit_id")
+def b_business_Unit_id_JobType_ROVO_BindVariable_BoundParameter()
+{
+BusinessUnitId
+}
+
+
+@AccessorParameterExpression(accessorName="TIME_CARD_MASTER_VO", name="BV_USER_NAME")
+def BV_USER_NAME_TIME_CARD_MASTER_VO_BindVariable_BoundParameter()
+{
+adf.context.sessionScope.userName
+}
+
+
+@AccessorParameterExpression(accessorName="Employee_ROVO", name="BV_BU_ID")
+def BV_BU_ID_Employee_ROVO_BindVariable_BoundParameter()
+{
+BusinessUnitId
+}
+
+
+@AccessorParameterExpression(accessorName="JobType_ROVO", name="DATA")
+def DATA_JobType_ROVO_BindVariable_BoundParameter()
+{
+DataValue
+}
+

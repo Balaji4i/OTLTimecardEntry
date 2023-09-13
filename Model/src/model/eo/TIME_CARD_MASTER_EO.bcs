@@ -1,0 +1,26 @@
+//Groovy Scripts for model.eo.TIME_CARD_MASTER_EO
+
+package model.eo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="TimeCardMasterId")
+def TimeCardMasterId_ExpressionScript_Expression()
+{
+new oracle.jbo.server.SequenceImpl("XXSC_TIME_CARD_MASTER_S",adf.object.getDBTransaction()).getSequenceNumber()
+}
+
+
+@TransientValueExpression(attributeName="BatchId")
+def BatchId_ExpressionScript_Expression()
+{
+new oracle.jbo.server.SequenceImpl("XXSC_NARESCO_OTL_BATCH_S",adf.object.getDBTransaction()).getSequenceNumber()
+}
+
+
+@TransientValueExpression(attributeName="CreatedBy")
+def CreatedBy_ExpressionScript_Expression()
+{
+adf.context.sessionScope.userName
+}
+

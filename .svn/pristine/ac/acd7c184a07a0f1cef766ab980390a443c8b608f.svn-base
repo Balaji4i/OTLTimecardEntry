@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PayrollHomeBTF">
+    <default-activity>checkUser</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__4">
+      <name>tokens</name>
+      <value>#{pageFlowScope.tokens}</value>
+      <class>java.lang.String</class>
+      <required/>
+    </input-parameter-definition>
+    <managed-bean id="__8">
+      <managed-bean-name>PayrollHome</managed-bean-name>
+      <managed-bean-class>view.PayrollHome</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__20">
+      <managed-bean-name>OTL_Page</managed-bean-name>
+      <managed-bean-class>view.OTL</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__25">
+      <managed-bean-name>Search_Page</managed-bean-name>
+      <managed-bean-class>view.SearchOtl</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="DashBoard">
+      <page>/fragments/DashBoard.jsff</page>
+    </view>
+    <view id="Invalid">
+      <page>/fragments/Invalid.jsff</page>
+    </view>
+    <router id="router">
+      <case id="__11">
+        <expression>#{pageFlowScope.val eq 'validUser'}</expression>
+        <outcome>ValidUser</outcome>
+      </case>
+      <case id="__12">
+        <expression>#{pageFlowScope.val eq 'invalidUser'}</expression>
+        <outcome>InvalidUser</outcome>
+      </case>
+      <default-outcome>ValidUser</default-outcome>
+    </router>
+    <method-call id="checkUser">
+      <method>#{backingBeanScope.PayrollHome.checkUser}</method>
+      <outcome>
+        <fixed-outcome>check</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="AddEditOTL">
+      <page>/fragments/AddEditOTL.jsff</page>
+    </view>
+    <view id="SearchOTL">
+      <page>/fragments/SearchOTL.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="CreateWithParameters">
+      <method>#{bindings.CreateWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="dataFilter">
+      <method>#{bindings.dataFilter.execute}</method>
+      <outcome>
+        <fixed-outcome>dataFilter</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__5">
+      <from-activity-id>router</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>ValidUser</from-outcome>
+        <to-activity-id>DashBoard</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__7">
+        <from-outcome>InvalidUser</from-outcome>
+        <to-activity-id>Invalid</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>checkUser</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>check</from-outcome>
+        <to-activity-id>router</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__1">
+      <from-activity-id>DashBoard</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>OTL</from-outcome>
+        <to-activity-id>dataFilter</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>SearchOTL</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome>add</from-outcome>
+        <to-activity-id>CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>edit</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__24">
+        <from-outcome>todash</from-outcome>
+        <to-activity-id>DashBoard</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id>AddEditOTL</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome>back</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__19">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>SearchOTL</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__23">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>AddEditOTL</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__26">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__27">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>AddEditOTL</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id>dataFilter</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome>dataFilter</from-outcome>
+        <to-activity-id>SearchOTL</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+    <visibility>
+      <url-invoke-allowed/>
+    </visibility>
+  </task-flow-definition>
+</adfc-config>

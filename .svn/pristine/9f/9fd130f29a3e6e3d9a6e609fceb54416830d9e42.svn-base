@@ -1,0 +1,36 @@
+//Groovy Scripts for model.vo.TIME_CARD_MASTER_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+
+
+
+@AccessorParameterExpression(accessorName="Project_ROVO", name="p_OrgId")
+def p_OrgId_Project_ROVO_BindVariable_BoundParameter()
+{
+BusinessUnitId
+}
+
+
+@AccessorParameterExpression(accessorName="UserAcess_ROVO", name="BV_BU_ID")
+def BV_BU_ID_UserAcess_ROVO_BindVariable_BoundParameter()
+{
+FlowWith
+}
+
+
+@AccessorParameterExpression(accessorName="NextApprover_ROVO", name="BV_User_ID")
+def BV_User_ID_NextApprover_ROVO_BindVariable_BoundParameter()
+{
+FlowWith
+}
+
+
+@AccessorParameterExpression(accessorName="BusinessUnit_ROVO", name="BV_USER_NAME")
+def BV_USER_NAME_BusinessUnit_ROVO_BindVariable_BoundParameter()
+{
+CreatedBy
+}
+

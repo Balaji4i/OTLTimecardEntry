@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="SearchOTLPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TIME_CARD_MASTER_VO" RangeSize="7" DataControl="Naresco_AMDataControl"
+              id="TIME_CARD_MASTER_VOIterator"/>
+    <searchRegion Criteria="SearchVo" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="TIME_CARD_MASTER_VOIterator" id="SearchVoQuery"/>
+    <iterator Binds="XXSC_TIME_CARD_DTL_VO" RangeSize="10" DataControl="Naresco_AMDataControl"
+              id="XXSC_TIME_CARD_DTL_VOIterator"/>
+    <iterator Binds="CopyPaste_ROVO" RangeSize="25" DataControl="Naresco_AMDataControl" id="CopyPaste_ROVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TIME_CARD_MASTER_VOIterator" id="TIME_CARD_MASTER_VO">
+      <nodeDefinition DefName="model.vo.TIME_CARD_MASTER_VO" Name="TIME_CARD_MASTER_VO0">
+        <AttrNames>
+          <Item Value="ProjectNumber"/>
+          <Item Value="TimeCardNumber"/>
+          <Item Value="ProjectName"/>
+          <Item Value="BusinessUnitName"/>
+          <Item Value="TimeCardDate"/>
+          <Item Value="ExpenditureType"/>
+          <Item Value="JobTypeName"/>
+          <Item Value="Status"/>
+          <Item Value="NextApprover"/>
+          <Item Value="ApprovalStatus"/>
+          <Item Value="CreatedBy"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="TimeCardMasterId">
+      <AttrNames>
+        <Item Value="TimeCardMasterId"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="TIME_CARD_MASTER_VOIterator" id="Delete"
+            InstanceName="Naresco_AMDataControl.TIME_CARD_MASTER_VO" DataControl="Naresco_AMDataControl"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" DataControl="Naresco_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <attributeValues IterBinding="XXSC_TIME_CARD_DTL_VOIterator" id="TimeCardDtlId">
+      <AttrNames>
+        <Item Value="TimeCardDtlId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CopyPaste_ROVOIterator" id="Day">
+      <AttrNames>
+        <Item Value="Day"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CopyPaste_ROVOIterator" id="Value" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Value"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="N"/>
+        <Item Value="Y"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

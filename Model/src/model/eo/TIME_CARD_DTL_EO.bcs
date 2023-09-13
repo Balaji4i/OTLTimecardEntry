@@ -1,0 +1,12 @@
+//Groovy Scripts for model.eo.TIME_CARD_DTL_EO
+
+package model.eo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="TimeCardDtlId")
+def TimeCardDtlId_ExpressionScript_Expression()
+{
+new oracle.jbo.server.SequenceImpl("XXSC_TIME_CARD_DTL_S",adf.object.getDBTransaction()).getSequenceNumber()
+}
+

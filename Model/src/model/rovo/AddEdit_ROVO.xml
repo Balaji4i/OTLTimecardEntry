@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AddEdit_ROVO"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="model.rovo.AddEdit_ROVORowImpl"
+  ComponentClass="model.rovo.AddEdit_ROVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.rovo.AddEdit_ROVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="JobType_ROVO"
+    ViewObjectName="model.rovo.JobType_ROVO"
+    RowLevelBinds="true">
+    <ParameterMap>
+      <PIMap Variable="b_employee">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+      <PIMap Variable="b_business_Unit_id">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+      <PIMap Variable="DATA">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Employee_ROVO"
+    ViewObjectName="model.rovo.Employee_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findbyBuId"
+      FullName="model.rovo.Employee_ROVO.findbyBuId"/>
+    <ParameterMap>
+      <PIMap Variable="BV_BU_ID">
+        <TransientExpression
+          Name="ExpressionScript"
+          trustMode="untrusted"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="TIME_CARD_MASTER_VO"
+    ViewObjectName="model.vo.TIME_CARD_MASTER_VO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findByID"
+      FullName="model.vo.TIME_CARD_MASTER_VO.findByID"/>
+    <ParameterMap>
+      <PIMap Variable="p_Id">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+      <PIMap Variable="BV_USER_NAME">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Task_ROVO"
+    ViewObjectName="model.rovo.Task_ROVO"
+    RowLevelBinds="true">
+    <ParameterMap>
+      <PIMap Variable="p_ProjId">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="AddEdit_ROVO"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_JobType"
+    ListVOName="JobType_ROVO"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="JobType"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="JobId"/>
+      <Item Value="JobRate"/>
+      <Item Value="Incentiverate"/>
+      <Item Value="Overtimerate"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="JobTypeName"/>
+      <Item Value="JobTypeCode"/>
+      <Item Value="JobTypeRate"/>
+      <Item Value="IncentiveRate"/>
+      <Item Value="OvertimeRate"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="JobTypeName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_EmployeeLov"
+    ListVOName="Employee_ROVO"
+    NullValueFlag="none"
+    MRUCount="0"
+    ComboRowCountHint="10">
+    <AttrArray Name="AttrNames">
+      <Item Value="EmployeeLov"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="EmployeeName"/>
+      <Item Value="EmployeeId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PersonNumber"/>
+      <Item Value="FullName"/>
+      <Item Value="PersonId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PersonNumber"/>
+      <Item Value="FullName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TaskNumber"
+    ListVOName="Task_ROVO"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TaskNumber"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="TaskName"/>
+      <Item Value="TaskId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="TaskNumber"/>
+      <Item Value="TaskName"/>
+      <Item Value="TaskId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="TaskNumber"/>
+      <Item Value="TaskName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[select '' Employee_Id, '' Employee_Name,'' Employee_Number ,'' Employee_Lov ,            
+'' Task_Id,'' Task_Name,'' Task_Number , '' Job_Id,'' Job_Type,'' Job_Rate,              
+'' Regular_Hours,'' OT1,'' OT2,'' OverTimeRate,'' IncentiveRate,'' data  from dual]]></SQLQuery>
+  <ViewAttribute
+    Name="EmployeeId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="EMPLOYEE_ID"
+    Expression="EMPLOYEE_ID"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="EmployeeName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="400"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_NAME"
+    Expression="EMPLOYEE_NAME"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="EmployeeNumber"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_NUMBER"
+    Expression="EMPLOYEE_NUMBER"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="EmployeeLov"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_LOV"
+    Expression="EMPLOYEE_LOV"
+    SQLType="VARCHAR"
+    LOVName="LOV_EmployeeLov">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <DISPLAYHEIGHT
+          Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TaskId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="TASK_ID"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      trustMode="untrusted"
+      CodeSourceName="AddEdit_ROVORow"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TaskName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="600"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TASK_NAME"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      trustMode="untrusted"
+      CodeSourceName="AddEdit_ROVORow"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TaskNumber"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="600"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TASK_NUMBER"
+    SQLType="VARCHAR"
+    LOVName="LOV_TaskNumber">
+    <TransientExpression
+      Name="ExpressionScript"
+      trustMode="untrusted"
+      CodeSourceName="AddEdit_ROVORow"/>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <DISPLAYHEIGHT
+          Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="JobId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="JOB_ID"
+    Expression="JOB_ID"
+    SQLType="VARCHAR"
+    Precision="100"/>
+  <ViewAttribute
+    Name="JobType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="300"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="JOB_TYPE"
+    Expression="JOB_TYPE"
+    SQLType="VARCHAR"
+    LOVName="LOV_JobType">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <DISPLAYHEIGHT
+          Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="JobRate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="JOB_RATE"
+    Expression="JOB_RATE"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="RegularHours"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="REGULAR_HOURS"
+    Expression="REGULAR_HOURS"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Ot1"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="OT1"
+    Expression="OT1"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Ot2"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="OT2"
+    Expression="OT2"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Overtimerate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="OVERTIMERATE"
+    Expression="OVERTIMERATE"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Incentiverate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="INCENTIVERATE"
+    Expression="INCENTIVERATE"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Data"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DATA"
+    Expression="DATA"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="ProjectId"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression
+      Name="ExpressionScript"
+      CodeSourceName="AddEdit_ROVORow"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BusinessUnitId"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression
+      Name="ExpressionScript"
+      CodeSourceName="AddEdit_ROVORow"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DataValue"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="EmployeeId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Search_ROVO"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="model.rovo.Search_ROVORowImpl"
+  ComponentClass="model.rovo.Search_ROVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.rovo.Search_ROVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="JobType_ROVO"
+    ViewObjectName="model.rovo.JobType_ROVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_JobType"
+    ListVOName="JobType_ROVO"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="JobType"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="JobTypeName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="JobTypeName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[select '' Employee_Id, '' Employee_Name,'' Employee_Number ,  
+'' Task_Id,'' Task_Name,'' Task_Number , '' Job_Id,'' Job_Type from dual]]></SQLQuery>
+  <ViewAttribute
+    Name="EmployeeId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_ID"
+    Expression="EMPLOYEE_ID"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="EmployeeName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="EMPLOYEE_NAME"
+    Expression="EMPLOYEE_NAME"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="EmployeeNumber"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_NUMBER"
+    Expression="EMPLOYEE_NUMBER"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="TaskId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    AliasName="TASK_ID"
+    Expression="TASK_ID"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="TaskName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="400"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TASK_NAME"
+    Expression="TASK_NAME"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="TaskNumber"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TASK_NUMBER"
+    Expression="TASK_NUMBER"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="JobId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="JOB_ID"
+    Expression="JOB_ID"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="JobType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="600"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="JOB_TYPE"
+    Expression="JOB_TYPE"
+    SQLType="VARCHAR"
+    LOVName="LOV_JobType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <DISPLAYHEIGHT
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="EmployeeId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

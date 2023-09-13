@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="AddEditOTLPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TIME_CARD_MASTER_VO" RangeSize="25" DataControl="Naresco_AMDataControl"
+              id="TIME_CARD_MASTER_VOIterator"/>
+    <iterator Binds="AddEdit_ROVO" RangeSize="25" DataControl="Naresco_AMDataControl" id="AddEdit_ROVOIterator"/>
+    <iterator Binds="Search_ROVO" RangeSize="25" DataControl="Naresco_AMDataControl" id="Search_ROVOIterator"/>
+    <iterator Binds="XXSC_TIME_CARD_DTL_VO" RangeSize="25" DataControl="Naresco_AMDataControl"
+              id="XXSC_TIME_CARD_DTL_VOIterator"/>
+    <searchRegion Binds="XXSC_TIME_CARD_DTL_VOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="XXSC_TIME_CARD_DTL_VOQuery"/>
+    <iterator Binds="UserAcess_ROVO" RangeSize="10" DataControl="Naresco_AMDataControl" id="UserAcess_ROVOIterator"/>
+    <iterator id="XXSC_TIME_CARD_DTL_VO1Iterator" Binds="XXSC_TIME_CARD_DTL_VO1" DataControl="Naresco_AMDataControl"
+              RangeSize="25"/>
+    <iterator id="Lookup_ROVO1Iterator" Binds="Lookup_ROVO1" DataControl="Naresco_AMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="ProjectNumber">
+      <AttrNames>
+        <Item Value="ProjectNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="ProjectName">
+      <AttrNames>
+        <Item Value="ProjectName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="TimeCardDate">
+      <AttrNames>
+        <Item Value="TimeCardDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="TimeCardNumber">
+      <AttrNames>
+        <Item Value="TimeCardNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="TIME_CARD_MASTER_VOIterator" StaticList="false" Uses="LOV_BusinessUnitName"
+          id="BusinessUnitName" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="TIME_CARD_MASTER_VOIterator" StaticList="false" Uses="LOV_JobTypeName" id="JobTypeName"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <action id="Commit" DataControl="Naresco_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="EmployeeName">
+      <AttrNames>
+        <Item Value="EmployeeName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="EmployeeNumber">
+      <AttrNames>
+        <Item Value="EmployeeNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="RegularHours">
+      <AttrNames>
+        <Item Value="RegularHours"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="Ot1">
+      <AttrNames>
+        <Item Value="Ot1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="Ot2">
+      <AttrNames>
+        <Item Value="Ot2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="TaskNumber">
+      <AttrNames>
+        <Item Value="TaskNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AddEdit_ROVOIterator" id="TaskName">
+      <AttrNames>
+        <Item Value="TaskName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Search_ROVOIterator" id="EmployeeNumber1">
+      <AttrNames>
+        <Item Value="EmployeeNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Search_ROVOIterator" id="EmployeeName1">
+      <AttrNames>
+        <Item Value="EmployeeName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Search_ROVOIterator" id="TaskNumber1">
+      <AttrNames>
+        <Item Value="TaskNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Search_ROVOIterator" id="TaskName1">
+      <AttrNames>
+        <Item Value="TaskName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="XXSC_TIME_CARD_DTL_VOIterator" id="XXSC_TIME_CARD_DTL_VO">
+      <nodeDefinition DefName="model.vo.XXSC_TIME_CARD_DTL_VO" Name="XXSC_TIME_CARD_DTL_VO0">
+        <AttrNames>
+          <Item Value="EmployeeNumber"/>
+          <Item Value="EmployeeName"/>
+          <Item Value="TaskName"/>
+          <Item Value="TaskNumber"/>
+          <Item Value="JobTypeName"/>
+          <Item Value="JobTypeRate"/>
+          <Item Value="RegularHrs"/>
+          <Item Value="OverTimeHrs"/>
+          <Item Value="IncentiveHrs"/>
+          <Item Value="IncentiveRate"/>
+          <Item Value="IncentiveUnitRate"/>
+          <Item Value="OverTimeRate"/>
+          <Item Value="OverTimeUnitRate"/>
+          <Item Value="PayrollFlag"/>
+          <Item Value="RegularRate"/>
+          <Item Value="RegularUnitRate"/>
+          <Item Value="Status"/>
+          <Item Value="TaskId"/>
+          <Item Value="RejectReason"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="CreatedBy"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <listOfValues IterBinding="AddEdit_ROVOIterator" StaticList="false" Uses="LOV_JobType" id="JobType"/>
+    <listOfValues IterBinding="TIME_CARD_MASTER_VOIterator" StaticList="false" Uses="LOV_BusinessUnitName"
+                  id="BusinessUnitName1"/>
+    <listOfValues IterBinding="TIME_CARD_MASTER_VOIterator" StaticList="false" Uses="LOV_JobTypeName"
+                  id="JobTypeName1"/>
+    <listOfValues IterBinding="Search_ROVOIterator" StaticList="false" Uses="LOV_JobType" id="JobType1"/>
+    <action id="Rollback" DataControl="Naresco_AMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <listOfValues IterBinding="TIME_CARD_MASTER_VOIterator" StaticList="false" Uses="LOV_ProjectNumber"
+                  id="ProjectNumber1"/>
+    <listOfValues IterBinding="AddEdit_ROVOIterator" StaticList="false" Uses="LOV_EmployeeLov" id="EmployeeLov"/>
+    <listOfValues IterBinding="AddEdit_ROVOIterator" StaticList="false" Uses="LOV_TaskNumber" id="TaskNumber2"/>
+    <action IterBinding="XXSC_TIME_CARD_DTL_VOIterator" id="Delete"
+            InstanceName="Naresco_AMDataControl.XXSC_TIME_CARD_DTL_VO" DataControl="Naresco_AMDataControl"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="JobTypeCode">
+      <AttrNames>
+        <Item Value="JobTypeCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserAcess_ROVOIterator" id="UserId">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="NextApprover">
+      <AttrNames>
+        <Item Value="NextApprover"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="ApprovalStatus">
+      <AttrNames>
+        <Item Value="ApprovalStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="XXSC_TIME_CARD_DTL_VOIterator" id="Execute" RequiresUpdateModel="true"
+            Action="iteratorExecute"/>
+    <attributeValues IterBinding="TIME_CARD_MASTER_VOIterator" id="WeekDay">
+      <AttrNames>
+        <Item Value="WeekDay"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

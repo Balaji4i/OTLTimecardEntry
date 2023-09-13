@@ -1,0 +1,19 @@
+//Groovy Scripts for model.vo.TIME_CARD_MASTER_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="NextApprover")
+def NextApprover_ExpressionScript_Expression()
+{
+if( NextApprover_ROVO.first()!=null)
+{
+return NextApprover_ROVO.first().getAttribute("UserName");
+}
+else
+{
+return "";
+}
+}
+
